@@ -21,7 +21,7 @@ export const MenuBar = () => {
         return <TextInputEditor/>
       default:
         return <div>
-          <span className="text-gray-600">We couldn't find the right tool for this component :/</span>
+          <span className="text-gray-600">We couldn&lsquo;t find the right tool for this component :/</span>
         </div>
     }
   }
