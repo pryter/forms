@@ -25,11 +25,10 @@ export const deSerialise = (data: {[key: string]: any}) => {
         }
         o[key] = output
       }else{
+        // @ts-ignore
         o[key] = deSerialise(val)
       }
     }
-
-    console.log(o)
 
     return Object.assign(instance, o)
   }

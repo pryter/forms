@@ -8,13 +8,14 @@ import {TextBox} from "../forms/InnerComponents/TextBox";
 import {TextInput} from "../forms/InnerComponents/TextInput";
 import {Component} from "../forms/Component";
 import {TextInputEditor} from "./TextInputEditor";
+import {getInstanceName} from "../../utils/getInstanceName";
 
 export const MenuBar = () => {
 
   const {menu, setMenu, editing, setEditing, targetCard, dynamicCallback} = useContext(MainContext)
 
   const getEditor = (instance: Component) => {
-    switch (instance.constructor.name) {
+    switch (getInstanceName(instance)) {
       case "TextBox":
         return <TextboxEditor/>
       case "TextInput":

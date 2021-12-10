@@ -7,6 +7,7 @@ import {Component} from "../components/forms/Component";
 import {TitleComponents} from "../components/forms/InnerComponents/TitleComponents";
 import {BodyComponents} from "../components/forms/InnerComponents/BodyComponents";
 import {deSerialise} from "../utils/deSerialise";
+import {serialise} from "../utils/serialise";
 
 interface MainContextType {
   menu: boolean,
@@ -35,7 +36,7 @@ export default function Home() {
   // ]
 
   const save = () => {
-    const data = cards.map((i) => (i.serialise()))
+    const data = cards.map((i) => (serialise(i)))
     localStorage.setItem("save", JSON.stringify(data))
   }
 
