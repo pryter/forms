@@ -3,20 +3,25 @@ import {BodyComponents} from "./InnerComponents/BodyComponents";
 import {InnerComponent} from "./InnerComponents/InnerComponent";
 import {Component} from "./Component";
 import {useContext} from "react";
-import {MainContext} from "../../pages";
 import {TextBox} from "./InnerComponents/TextBox";
 import {PlusIcon} from "@heroicons/react/solid";
+import {motion} from "framer-motion"
 
 export class Card extends Component {
 
   public titleComponents: TitleComponents[]
   public bodyComponents: BodyComponents[]
+  public editing: boolean
 
   constructor(titleComponents?: TitleComponents[], bodyComponents?: BodyComponents[], id? :string) {
     super(id)
 
     this.titleComponents = titleComponents || []
     this.bodyComponents = bodyComponents || []
+  }
+
+  public setEditing(bool: boolean) {
+    this.editing = !!bool
   }
 
   public getElementById(id: string) {
@@ -48,13 +53,13 @@ export class Card extends Component {
   public build(setMenu, setTargetCard, setEditing) {
 
     return(
-      <div key={this.id} className="bg-white shadow px-4 py-5 rounded-md sm:rounded-lg sm:p-6">
+      <motion.div key={this.id} className="bg-white shadow px-4 py-5 rounded-md sm:rounded-lg sm:p-6" layout="position">
         <div className="md:grid md:grid-cols-3 md:gap-6">
-          {this.titleComponents.length > 0 ? this.titleComponents.map((item => (item.toElement(this.id, (target) => {
+          {this.titleComponents.length > 0 ? this.titleComponents.map((item => (item.toElement(this.id, this.editing && ((target) => {
               setMenu(true)
               setEditing(target)
-            })))) :
-            <button
+            }), this.editing)))) :
+            this.editing && <button
               type="button"
               onClick={() => {
                 setTargetCard(this)
@@ -87,13 +92,14 @@ export class Card extends Component {
 
           <div className="mt-5 md:mt-0 md:col-span-2 space-y-6">
             {this.bodyComponents.length > 0 ? <> {
-              this.bodyComponents.map(item => (item.toElement(this.id, (target) => {
+              this.bodyComponents.map(item => (item.toElement(this.id, this.editing && ((target) => {
                 setMenu(true)
                 setEditing(target)
-              })))
+              }), this.editing)))
             }
-                <div className="flex justify-center">
-                  <button
+                {this.editing && <div className="flex justify-center">
+                  <motion.button
+                    layout={"position"}
                     onClick={() => {
                       setTargetCard(this)
                       setMenu(true)
@@ -101,12 +107,12 @@ export class Card extends Component {
                     type="button"
                     className="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
-                    <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+                    <PlusIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true"/>
                     Insert new component
-                  </button>
-                </div>
+                  </motion.button>
+                </div>}
               </> :
-              <button
+              this.editing && <button
                 type="button"
                 onClick={() => {
                   setTargetCard(this)
@@ -133,7 +139,7 @@ export class Card extends Component {
               </button>}
           </div>
         </div>
-      </div>
+      </motion.div>
     )
 
   }

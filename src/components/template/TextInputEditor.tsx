@@ -1,6 +1,6 @@
 import {ArrowLeftIcon, ArrowRightIcon} from "@heroicons/react/solid";
 import {useContext} from "react";
-import {MainContext} from "../../pages";
+import {MainContext} from "../../pages/u/[id]";
 import {TextInput} from "../forms/InnerComponents/TextInput";
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/outline";
 import {Dropdown} from "./Dropdown";

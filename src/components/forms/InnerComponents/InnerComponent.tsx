@@ -1,6 +1,7 @@
 import {uid} from "uid";
 import {Component} from "../Component";
 import {TextComponent} from "../Text";
+import {motion} from "framer-motion"
 
 export class InnerComponent extends Component {
 
@@ -17,12 +18,12 @@ export class InnerComponent extends Component {
 
   }
 
-  public toElement(parentId?: string, clickAction?: (target: Component) => void) {
+  public toElement(parentId?: string, clickAction?: (target: Component) => void, editing? :boolean) {
     const id = `${this.id}${parentId && `-${parentId}`}`
     const Element = () => (this.build(id, this.title))
-    return <div key={id} className="cursor-pointer" onClick={() => {clickAction &&  clickAction(this)}}>
+    return <motion.div initial={editing && {y: -10}} animate={{y: 0}} layout={"position"} key={id} className={editing ? "cursor-pointer" : ""} onClick={() => {clickAction &&  clickAction(this)}}>
       <Element/>
-    </div>
+    </motion.div>
   }
 
 }

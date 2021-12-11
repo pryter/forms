@@ -1,7 +1,7 @@
 import {Fragment, useContext, useState} from 'react'
 import {Listbox, Transition} from '@headlessui/react'
 import {PaperClipIcon, UserCircleIcon} from '@heroicons/react/solid'
-import {MainContext} from "../../pages";
+import {MainContext} from "../../pages/u/[id]";
 import {TitleComponents} from "../forms/InnerComponents/TitleComponents";
 import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/outline";
 

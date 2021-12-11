@@ -1,7 +1,6 @@
 import {Dialog, Transition} from "@headlessui/react";
 import {Fragment, useContext} from "react";
 import {XIcon} from "@heroicons/react/outline";
-import {MainContext} from "../../pages";
 import {Dropdown} from "./Dropdown";
 import {TextboxEditor} from "./TextboxEditor";
 import {TextBox} from "../forms/InnerComponents/TextBox";
@@ -9,6 +8,8 @@ import {TextInput} from "../forms/InnerComponents/TextInput";
 import {Component} from "../forms/Component";
 import {TextInputEditor} from "./TextInputEditor";
 import {getInstanceName} from "../../utils/getInstanceName";
+import {motion} from "framer-motion"
+import {MainContext} from "../../pages/u/[id]";
 
 export const MenuBar = () => {
 
@@ -75,7 +76,7 @@ export const MenuBar = () => {
                           <h1 className="text-gray-800 font-medium">Text Boxes</h1>
                           <div className="flex flex-wrap space-x-12">
                             <div className="flex flex-col items-center">
-                              <div onClick={() => {
+                              <motion.div whileHover={{scale: 1.05}} onClick={() => {
                                 dynamicCallback(() => {
                                   const textBox = new TextBox()
                                   targetCard.appendBody(textBox)
@@ -88,7 +89,7 @@ export const MenuBar = () => {
                                   <div className="h-[6px] w-9/12 bg-gray-600 mb-1 ml-[3px]"/>
                                   <div className="h-[6px] w-11/12 bg-gray-600 mb-1 ml-[3px]"/>
                                 </div>
-                              </div>
+                              </motion.div>
                               <h1 className="text-gray-700 mt-1">Textbox</h1>
                             </div>
                           </div>
@@ -97,13 +98,13 @@ export const MenuBar = () => {
                           <h1 className="text-gray-800 font-medium">Inputs group</h1>
                           <div className="flex flex-wrap space-x-12">
                             <div className="flex flex-col items-center">
-                              <div onClick={() => {
+                              <motion.div whileHover={{scale: 1.05}} onClick={() => {
                                 dynamicCallback(() => {
                                   const input = new TextInput()
                                   targetCard.appendBody(input)
                                   setEditing(input)
                                 })
-                              }} className="w-32 h-32 border border-gray-300 rounded-md shadow-md">
+                              }} className="w-32 h-32 border border-gray-300 rounded-md shadow-md cursor-pointer">
                                 <div className="mt-4 ml-3">
                                   <h1 className="text-xs text-gray-600 font-medium">Username</h1>
                                   <div className="w-24 h-5 rounded-md border border-gray-400">
@@ -114,7 +115,7 @@ export const MenuBar = () => {
                                   <div className="w-20 h-5 rounded-md border border-gray-400">
                                   </div>
                                 </div>
-                              </div>
+                              </motion.div>
                               <h1 className="text-gray-700 mt-1">Inputs</h1>
                             </div>
                             <div className="flex flex-col items-center">
