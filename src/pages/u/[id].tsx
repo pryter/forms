@@ -89,7 +89,7 @@ export default function Home() {
 
   useEffect(() => {
 
-    if( rawData) {
+    if(rawData) {
       const obj = JSON.parse(rawData)
       setCards(obj.map((i) => {
         const card = deSerialise(i)

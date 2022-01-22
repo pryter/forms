@@ -11,7 +11,7 @@ export class Card extends Component {
 
   public titleComponents: TitleComponents[]
   public bodyComponents: BodyComponents[]
-  public editing: boolean
+  public editing: boolean = true
 
   constructor(titleComponents?: TitleComponents[], bodyComponents?: BodyComponents[], id? :string) {
     super(id)
