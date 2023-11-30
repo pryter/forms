@@ -1,4 +1,4 @@
-eexport default function () {
+export default function () {
   return (
     <div>
 
